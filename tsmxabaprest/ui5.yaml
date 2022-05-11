@@ -29,7 +29,7 @@ server:
             - /test-resources
           url: https://ui5.sap.com
         backend:
-          - path: monsignor_rest
+          - path: /monsignor_rest
             url: http://abaptsj:8000
             client: '100'
             destination: TSJ

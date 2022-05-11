@@ -1,0 +1,92 @@
+_schema-version: "3.2"
+ID: TSMXRest3
+version: 0.0.1
+modules:
+- name: TSMXRest3-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: TSMXRest3-destination-service
+    parameters:
+      content-target: true
+  - name: TSMXRest3_html_repo_host
+    parameters:
+      service-key:
+        name: TSMXRest3_html_repo_host-key
+  - name: uaa_TSMXRest3
+    parameters:
+      service-key:
+        name: uaa_TSMXRest3-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: tsmxrouter_TSMXRest3_html_repo_host
+          ServiceInstanceName: TSMXRest3-html5-app-host-service
+          ServiceKeyName: TSMXRest3_html_repo_host-key
+          sap.cloud.service: tsmxrouter
+        - Authentication: OAuth2UserTokenExchange
+          Name: tsmxrouter_uaa_TSMXRest3
+          ServiceInstanceName: TSMXRest3-xsuaa-service
+          ServiceKeyName: uaa_TSMXRest3-key
+          sap.cloud.service: tsmxrouter
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: TSMXRest3-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: TSMXRest3_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - tsmxtsmxrestui.zip
+      name: tsmxtsmxrestui
+      target-path: resources/
+- name: tsmxtsmxrestui
+  type: html5
+  path: tsmxrestui
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: TSMXRest3-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: TSMXRest3-destination-service
+    service-plan: lite
+- name: TSMXRest3_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: TSMXRest3-html5-app-host-service
+    service-plan: app-host
+- name: uaa_TSMXRest3
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: TSMXRest3-xsuaa-service
+    service-plan: application
+parameters:
+  deploy_mode: html5-repo

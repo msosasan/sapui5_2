@@ -1,0 +1,73 @@
+<mvc:View
+    controllerName="tsmx.tsmxrestui.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Shell id="shell">
+        <App id="app">
+            <pages>
+            <Page title="DEMO REST Programming" id="DEMO_SO">
+	    <content>
+        <sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" id="__form0" layout="ResponsiveGridLayout" editable="true" maxContainerCols="1">
+		    <sap.ui.layout.form:content>
+				            <sap.ui.core:Title xmlns:sap.ui.core="sap.ui.core" id="__title0" text="Sales Order Data" />
+				            <Label id="DocType" text="Document Type" width="100%" />
+				            <Input value="{/SALESORDER/HEADER/DOC_TYPE}" id="Doc_Type" width="10%" />
+				            <Label id="Salesorg" text="Sales Org." width="100%" />
+				            <Input value="{/SALESORDER/HEADER/SALES_ORG}" id="Sales_org" width="10%" />
+				            <Label id="Distrchan" text="Dist.Channel" width="100%" />
+				            <Input value="{/SALESORDER/HEADER/DISTR_CHAN}" id="Distr_chan" width="10%" />
+				            <Label id="Divisiont" text="Division" width="100%" />
+				            <Input value="{/SALESORDER/HEADER/DIVISION}" id="Division" width="10%" />
+				            <Label id="Currencyt" text="Currency" width="100%" />
+				            <Input value="{/SALESORDER/HEADER/CURRENCY}" id="Currency" width="10%" />
+				            <Label id="Purchaset" text="Purc.Order" width="100%" />
+				            <Input value="{/SALESORDER/HEADER/PURCH_NO_C}" id="Purch_no_c" width="15%" />
+			</sap.ui.layout.form:content>
+			</sap.ui.layout.form:SimpleForm>
+		    <Table>
+    			<columns>
+    				<Column width="12em">
+                    	<Text text="Item No." />
+    				</Column>
+            		<Column minScreenWidth="Tablet"
+        					demandPopin="true">
+                	<Text text="Material" />
+                	</Column>
+                	<Column minScreenWidth="Tablet"
+        					demandPopin="true">
+                	<Text text="Quantity" />
+                	</Column>
+                </columns>
+			</Table>		
+		    <Table>
+    			<columns>
+    				<Column width="12em">
+                    	<Text text="Item No." />
+    				</Column>
+            		<Column minScreenWidth="Tablet"
+        					demandPopin="true">
+                	<Text text="Order Sched.Qty" />
+                	</Column>
+                </columns>
+			</Table>			
+		    <Table>
+    			<columns>
+    				<Column width="12em">
+                    	<Text text="Partner Role" />
+    				</Column>
+            		<Column minScreenWidth="Tablet"
+        					demandPopin="true">
+                	<Text text="Partner Number" />
+                	</Column>
+                </columns>
+			</Table>			
+			<Button text="Fetch Token" icon="sap-icon://save" press="fetchToken" />
+		    <Button text="Create Sales Order" icon="sap-icon://save" press="onSave" />	
+			</content>
+			</Page>
+		</pages>
+        </App>
+    </Shell>
+</mvc:View>

@@ -16,7 +16,7 @@
         },
         "dataSources": {
             "mainService": {
-                "uri": "/monsignor_rest/",
+                "uri": "monsignor_rest",
                 "type": "http",
                 "settings": {
                     "annotations": []

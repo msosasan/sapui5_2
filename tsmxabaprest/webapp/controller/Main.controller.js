@@ -46,7 +46,7 @@ sap.ui.define([
                 var that = this;
                 $.ajax({
                     type: "GET",
-                    url: "monsignor_rest/monsignor?sap-client=100",
+                    url: sap.ui.require.toUrl("tsystems/tsmxabaprest/monsignor_rest/monsignor?sap-client=100"),
                     headers: { "x-CSRF-Token": "Fetch" }
                 }).always(function (data, status, response) {
                     that.myToken = response.getResponseHeader("x-csrf-token");
@@ -59,7 +59,7 @@ sap.ui.define([
                 var jsonData = JSON.stringify(lv_data);
                 $.ajax({
                     type: "POST",
-                    url: "monsignor_rest/monsignor?sap-client=100",
+                    url: sap.ui.require.toUrl("tsystems/tsmxabaprest/monsignor_rest/monsignor?sap-client=100"),
                     headers: { "x-csrf-token": this.myToken },
                     contentType: "application/json",
                     dataType: "json",

@@ -11,7 +11,6 @@ sap.ui.define([
     function (Controller, Filter, FilterOperator) {
         "use strict";
         function onInit() {
-            let oJSONModel = new sap.ui.model.json.JSONModel();
             let oView = this.getView();
             let i18nBundle = oView.getModel("i18n").getResourceBundle();
             // let oJson = {
@@ -22,14 +21,33 @@ sap.ui.define([
             //     { key: "ES", text: i18nBundle.getText("countryES") },]
             // }
             //oJSONModel.setData(oJson);
+            let oJSONModel = new sap.ui.model.json.JSONModel();
             oJSONModel.loadData("../localService/mockdata/employee.json", false);
+            
             oJSONModel.attachRequestCompleted(function (oEventModel) {
                 console.log(JSON.stringify(oJSONModel.getData()))
             });
-            oView.setModel(oJSONModel);
+            oView.setModel(oJSONModel,"jsonEmployees");
+            oJSONModel = new sap.ui.model.json.JSONModel();
+            oJSONModel.loadData("../localService/mockdata/Countries.json", false);
+            oJSONModel.attachRequestCompleted(function (oEventModel) {
+                console.log(JSON.stringify(oJSONModel.getData()))
+            });
+            oView.setModel(oJSONModel,"jsonCountries");
+
+            let oJSONConfig = new sap.ui.model.json.JSONModel({
+                visibleID: true,
+                visibleName: true,
+                visibleCountry: true,
+                visibleCity: false,
+                visibleBtnShowCity: true,
+                visibleBtnHideCity: false
+            });
+
+            oView.setModel(oJSONConfig,"jsonConfig");            
         };
         function onFilter() {
-            let oJSON = this.getView().getModel().getData();
+            let oJSON = this.getView().getModel("jsonCountries").getData();
             let filters = [];
 
             if (oJSON.EmployeeId !== "") {
@@ -44,14 +62,14 @@ sap.ui.define([
         };
 
         function onClearFilter() {
-            let oModel = this.getView().getModel();
+            let oModel = this.getView().getModel("jsonCountries");
             oModel.setProperty("/EmployeeId", "");
             oModel.setProperty("/CountryKey", "");
         };
 
         function showPostalCode(oEvent) {
             let itemPressed = oEvent.getSource();
-            let oContext = itemPressed.getBindingContext();
+            let oContext = itemPressed.getBindingContext("jsonEmployees");
             let objectContext = oContext.getObject();
 
             sap.m.MessageToast.show(objectContext.PostalCode);
@@ -67,6 +85,20 @@ function myCheck() {
     }
 };
 */
+function onShowCity() {
+    let oJsonModelConfig = this.getView().getModel("jsonConfig");
+    oJsonModelConfig.setProperty("/visibleCity",true);
+    oJsonModelConfig.setProperty("/visibleBtnShowCity",false);
+    oJsonModelConfig.setProperty("/visibleBtnHideCity",true);
+
+};
+ function onHideCity() {
+    let oJsonModelConfig = this.getView().getModel("jsonConfig");
+    oJsonModelConfig.setProperty("/visibleCity",false);
+    oJsonModelConfig.setProperty("/visibleBtnShowCity",true);
+    oJsonModelConfig.setProperty("/visibleBtnHideCity",false);
+
+};
         const Main = Controller.extend("logaligroup.employees.controller.MainView");
         Main.prototype.onValidate = function () {
             let inputEmployee = this.getView().byId('inputEmployee');
@@ -86,6 +118,8 @@ function myCheck() {
         Main.prototype.onFilter = onFilter;
         Main.prototype.onClearFilter = onClearFilter;
         Main.prototype.showPostalCode = showPostalCode;
+        Main.prototype.onShowCity = onShowCity;
+        Main.prototype.onHideCity = onHideCity;
 
         return Main;
         /*

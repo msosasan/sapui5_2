@@ -19,19 +19,25 @@
         <Label id="label3" text="{i18n>tableCountry}"/>
         </header>
         </Column>
-            <Column id="col4" visible="{jsonConfig>/visibleCity}">
+       <Column id="col4" visible="{jsonConfig>/visibleCity}">
         <header>
         <Label id="label4" text="{i18n>tableCity}"/>
         </header>
         </Column>
+        <Column id="col5" width="100px">
+        <header>
+        <Label id="label5" text="{i18n>tableShowDetails}"/>
+        </header>
+        </Column>
         </columns>
         <items>
-        <ColumnListItem id="cli" type="Active" press="showOrders">
+        <ColumnListItem id="cli">
         <cells>
             <Label id="lb1" text="{jsonEmployees>EmployeeID}"/>
             <Label id="lb2" text="{jsonEmployees>LastName} , {jsonEmployees>FirstName}"/>
             <Label id="lb3" text="{jsonEmployees>Country}"/>
             <Label id="lb4" text="{jsonEmployees>City}"/>
+            <core:Icon id="_IDGenIcon1" src="sap-icon://show"  press="showOrders2"></core:Icon>
             </cells>
         </ColumnListItem>
         </items>

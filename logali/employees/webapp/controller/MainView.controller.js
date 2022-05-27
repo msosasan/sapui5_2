@@ -100,6 +100,22 @@ function onShowCity() {
 
 };
 
+function showOrders2(oEvent){
+    let itemPressed = oEvent.getSource();
+    let oContext = itemPressed.getBindingContext("jsonEmployees");
+    if(!this._oDialogOrders){
+    this._oDialogOrders = sap.ui.xmlfragment("logaligroup.employees.fragment.DialogOrders", this);
+    this.getView().addDependent(this._oDialogOrders);
+    }
+    this._oDialogOrders.bindElement("jsonEmployees>" + oContext.getPath());
+    this._oDialogOrders.open();
+
+}
+
+function onCloseOrders(){
+    this._oDialogOrders.close();
+}
+
 function showOrders(oEvent) {
     let ordersTable = this.getView().byId("ordersTable");
     let ordersTable2 = this.getView().byId("ordersTable2");
@@ -202,6 +218,8 @@ function showOrders(oEvent) {
         Main.prototype.onShowCity = onShowCity;
         Main.prototype.onHideCity = onHideCity;
         Main.prototype.showOrders = showOrders;
+        Main.prototype.showOrders2 = showOrders2;
+        Main.prototype.onCloseOrders = onCloseOrders;
 
         return Main;
         /*

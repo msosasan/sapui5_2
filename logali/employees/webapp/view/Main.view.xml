@@ -19,7 +19,7 @@
              </mvc:XMLView>
              </f:midColumnPages>
              <f:endColumnPages>
-             <Page id="_IDGenPage2"></Page>
+             <Page id="_IDGenPage2N"></Page>
              </f:endColumnPages>
           </f:FlexibleColumnLayout>
           </content>

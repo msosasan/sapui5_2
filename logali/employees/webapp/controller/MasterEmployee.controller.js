@@ -11,40 +11,8 @@ sap.ui.define([
     function (Controller, Filter, FilterOperator) {
         "use strict";
         function onInit() {
-            let oView = this.getView();
-            let i18nBundle = oView.getModel("i18n").getResourceBundle();
-            // let oJson = {
-            //     employeeId: "12345",
-            //     countryKey: "UK",
-            //     listCountry: [{ key: "US", text: i18nBundle.getText("countryUS") },
-            //     { key: "UK", text: i18nBundle.getText("countryUK") },
-            //     { key: "ES", text: i18nBundle.getText("countryES") },]
-            // }
-            //oJSONModel.setData(oJson);
-            let oJSONModel = new sap.ui.model.json.JSONModel();
-            oJSONModel.loadData("../localService/mockdata/employee.json", false);
-            
-            oJSONModel.attachRequestCompleted(function (oEventModel) {
-                console.log(JSON.stringify(oJSONModel.getData()))
-            });
-            oView.setModel(oJSONModel,"jsonEmployees");
-            oJSONModel = new sap.ui.model.json.JSONModel();
-            oJSONModel.loadData("../localService/mockdata/Countries.json", false);
-            oJSONModel.attachRequestCompleted(function (oEventModel) {
-                console.log(JSON.stringify(oJSONModel.getData()))
-            });
-            oView.setModel(oJSONModel,"jsonCountries");
-
-            let oJSONConfig = new sap.ui.model.json.JSONModel({
-                visibleID: true,
-                visibleName: true,
-                visibleCountry: true,
-                visibleCity: false,
-                visibleBtnShowCity: true,
-                visibleBtnHideCity: false
-            });
-
-            oView.setModel(oJSONConfig,"jsonConfig");            
+            this._bus =sap.ui.getCore().getEventBus();
+           
         };
         function onFilter() {
             let oJSON = this.getView().getModel("jsonCountries").getData();
@@ -114,6 +82,11 @@ function showOrders2(oEvent){
 
 function onCloseOrders(){
     this._oDialogOrders.close();
+}
+
+function showEmployee(oEvent){
+    let path = oEvent.getSource().getBindingContext("jsonEmployees").getPath();
+    this._bus.publish("flexible","showEmployee", path)
 }
 
 function showOrders(oEvent) {
@@ -220,6 +193,7 @@ function showOrders(oEvent) {
         Main.prototype.showOrders = showOrders;
         Main.prototype.showOrders2 = showOrders2;
         Main.prototype.onCloseOrders = onCloseOrders;
+        Main.prototype.showEmployee = showEmployee;
 
         return Main;
         /*

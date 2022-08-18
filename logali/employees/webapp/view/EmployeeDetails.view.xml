@@ -12,40 +12,50 @@
     <FlexBox id="_IDGenFlexBox12" height="65px" alignItems="Start" justifyContent="SpaceBetween">
     <items>
     <VBox id="_IDGenVBox1" >
-     <Text id="_IDGenText2" text="{i18n>employeeID}" class="boldText sapUITinyMarginEnd"/>
-     <Text id="_IDGenText3" text="{jsonEmployees>EmployeeID}" class="boldText sapUITinyMarginEnd"/>
+     <Text id="_IDGenText2" text="{i18n>employeeID}" class="boldText sapUiTinyMarginEnd"/>
+     <Text id="_IDGenText3" text="{jsonEmployees>EmployeeID}" class="boldText sapUiTinyMarginEnd"/>
     </VBox>
     <VBox id="_IDGenVBox2" >
-     <Text id="_IDGenText4" text="{i18n>title}" class="boldText sapUITinyMarginEnd"/>
+     <Text id="_IDGenText4" text="{i18n>title}" class="boldText sapUiTinyMarginEnd"/>
      <Text id="_IDGenText5" text="{jsonEmployees>Title}" class="boldText"/>
     </VBox>
     </items>
     </FlexBox>
-     <FlexBox id="_IDGenFlexBox13" alignItems="Start">
+     <FlexBox id="_IDGenFlexBox13" alignItems="Start" justifyContent="SpaceBetween">
     <items>
     <HBox id="_IDGenHBox1N" >
-     <Text id="_IDGenText6" text="{i18n>country}" class="boldText sapUITinyMarginEnd"/>
-     <Text id="_IDGenText7" text="{jsonEmployees>Country}" class="boldText sapUITinyMarginEnd"/>
+     <Text id="_IDGenText6" text="{i18n>country}" class="boldText sapUiTinyMarginEnd"/>
+     <Text id="_IDGenText7" text="{jsonEmployees>Country}" class="boldText sapUiTinyMarginEnd"/>
      <layoutData>
      <FlexItemData id="_IDGenFlexItemData1" growFactor="3"></FlexItemData>
      </layoutData>
     </HBox>
     <HBox id="_IDGenHBox2" >
-     <Text id="_IDGenText8" text="{i18n>city}" class="boldText sapUITinyMarginEnd"/>
-     <Text id="_IDGenText9" text="{jsonEmployees>City}" class="boldText sapUITinyMarginEnd"/>
+     <Text id="_IDGenText8" text="{i18n>city}" class="boldText sapUiTinyMarginEnd"/>
+     <Text id="_IDGenText9" text="{jsonEmployees>City}" class="boldText sapUiTinyMarginEnd"/>
         <layoutData>
      <FlexItemData id="_IDGenFlexItemData2" growFactor="2"></FlexItemData>
      </layoutData>
     </HBox>
       <FlexBox id="_IDGenFBox3" direction="Row" alignItems="Start">
-     <Text id="_IDGenText10" text="{i18n>postalCode}" class="boldText sapUITinyMarginEnd"/>
-     <Text id="_IDGenText11" text="{jsonEmployees>PostalCode}" class="boldText sapUITinyMarginEnd"/>
+     <Text id="_IDGenText10" text="{i18n>postalCode}" class="boldText sapUiTinyMarginEnd"/>
+     <Text id="_IDGenText11" text="{jsonEmployees>PostalCode}" class="boldText sapUiTinyMarginEnd"/>
         <layoutData>
      <FlexItemData id="_IDGenFlexItemData3" growFactor="1"></FlexItemData>
      </layoutData>
     </FlexBox>
     </items>
     </FlexBox>
+    </Panel>
+    <Panel id="_IDGenPanel2" class="sapUiSizeCompact" backgroundDesign="Transparent">
+    <headerToolbar>
+    <Toolbar id="_IDGenToolbar1" >
+    <Title id="_IDGenTitle1" text="{i18n>incidence} {=${jsonEmployees>Country} !== 'US' ? ${i18n>europe} : ${i18n>us}}" ></Title>
+    <ToolbarSpacer id="_IDGenToolbarSpacer1" ></ToolbarSpacer>
+    <Button id="_IDGenButton1" text="{i18n>createIncidence}" press="onCreateIncidence"></Button>
+    </Toolbar>
+    </headerToolbar>
+    <Panel id="tableIncidence" class="sapUiNoContentPadding" backgroundDesign="Transparent"></Panel>
     </Panel>
     </Page>
 

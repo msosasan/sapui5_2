@@ -1,5 +1,5 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+    "sap/ui/core/mvc/Controller",
 
 ], function(Controller) {
     return Controller.extend("logaligroup.employees.controller.Main", {
@@ -53,6 +53,9 @@ sap.ui.define([
             let detailView = this.getView().byId("detailEmployeeView");
             detailView.bindElement("jsonEmployees>" + path);
             this.getView().getModel("jsonLayout").setProperty("/ActiveKey","TwoColumnsMidExpanded");
+            let incidenceModel = new sap.ui.model.json.JSONModel([]);
+            detailView.setModel(incidenceModel,"incidenceModel");
+            detailView.byId("tableIncidence").removeAllContent();
         }
     });
 });

@@ -37,7 +37,7 @@ sap.ui.define([
 
         function showPostalCode(oEvent) {
             let itemPressed = oEvent.getSource();
-            let oContext = itemPressed.getBindingContext("jsonEmployees");
+            let oContext = itemPressed.getBindingContext("odataNorthwind");
             let objectContext = oContext.getObject();
 
             sap.m.MessageToast.show(objectContext.PostalCode);
@@ -70,12 +70,12 @@ function onShowCity() {
 
 function showOrders2(oEvent){
     let itemPressed = oEvent.getSource();
-    let oContext = itemPressed.getBindingContext("jsonEmployees");
+    let oContext = itemPressed.getBindingContext("odataNorthwind");
     if(!this._oDialogOrders){
     this._oDialogOrders = sap.ui.xmlfragment("logaligroup.employees.fragment.DialogOrders", this);
     this.getView().addDependent(this._oDialogOrders);
     }
-    this._oDialogOrders.bindElement("jsonEmployees>" + oContext.getPath());
+    this._oDialogOrders.bindElement("odataNorthwind>" + oContext.getPath());
     this._oDialogOrders.open();
 
 }
@@ -85,7 +85,7 @@ function onCloseOrders(){
 }
 
 function showEmployee(oEvent){
-    let path = oEvent.getSource().getBindingContext("jsonEmployees").getPath();
+    let path = oEvent.getSource().getBindingContext("odataNorthwind").getPath();
     this._bus.publish("flexible","showEmployee", path)
 }
 
@@ -95,7 +95,7 @@ function showOrders(oEvent) {
     ordersTable.destroyItems();
     ordersTable2.destroyItems();
     let itemPressed = oEvent.getSource();
-    let oContext = itemPressed.getBindingContext("jsonEmployees");
+    let oContext = itemPressed.getBindingContext("odataNorthwind");
     let oObjectContext = oContext.getObject();
     let orders = oObjectContext.Orders;
     let orderItems = [];
@@ -147,24 +147,24 @@ function showOrders(oEvent) {
     let columnListItem = new sap.m.ColumnListItem();
 
     let cellOrderID = new sap.m.Label();
-    cellOrderID.bindProperty("text", "jsonEmployees>OrderID");
+    cellOrderID.bindProperty("text", "odataNorthwind>OrderID");
     columnListItem.addCell(cellOrderID);
 
     let cellFreight = new sap.m.Label();
-    cellFreight.bindProperty("text", "jsonEmployees>Freight");
+    cellFreight.bindProperty("text", "odataNorthwind>Freight");
     columnListItem.addCell(cellFreight);
 
     let cellShipAddress = new sap.m.Label();
-    cellShipAddress.bindProperty("text", "jsonEmployees>ShipAddress");
+    cellShipAddress.bindProperty("text", "odataNorthwind>ShipAddress");
     columnListItem.addCell(cellShipAddress);
     
     let oBindingInfo = {
-        model: "jsonEmployees",
+        model: "odataNorthwind",
         path: "Orders",
         template: columnListItem
     }
     newTableJSON.bindAggregation("items", oBindingInfo);
-    newTableJSON.bindElement("jsonEmployees>" + oContext.getPath());
+    newTableJSON.bindElement("odataNorthwind>" + oContext.getPath());
 
     ordersTable2.addItem(newTableJSON);
 

@@ -14,12 +14,12 @@ sap.ui.define([
             //     { key: "ES", text: i18nBundle.getText("countryES") },]
             // }
             //oJSONModel.setData(oJson);
-            let oJSONModel = new sap.ui.model.json.JSONModel();
-            oJSONModel.loadData("../localService/mockdata/employee.json", false);     
-            oJSONModel.attachRequestCompleted(function (oEventModel) {
-                console.log(JSON.stringify(oJSONModel.getData()))
-            });
-            oView.setModel(oJSONModel,"jsonEmployees");
+            //let oJSONModel = new sap.ui.model.json.JSONModel();
+            //oJSONModel.loadData("../localService/mockdata/employee.json", false);     
+           // oJSONModel.attachRequestCompleted(function (oEventModel) {
+            //    console.log(JSON.stringify(oJSONModel.getData()))
+            //});
+            //oView.setModel(oJSONModel,"odataNorthwind");
 
             oJSONModel = new sap.ui.model.json.JSONModel();
             oJSONModel.loadData("../localService/mockdata/Countries.json", false);
@@ -51,7 +51,7 @@ sap.ui.define([
 
         showEmployeeDetails: function(category, nameEvent, path){
             let detailView = this.getView().byId("detailEmployeeView");
-            detailView.bindElement("jsonEmployees>" + path);
+            detailView.bindElement("odataNorthwind>" + path);
             this.getView().getModel("jsonLayout").setProperty("/ActiveKey","TwoColumnsMidExpanded");
             let incidenceModel = new sap.ui.model.json.JSONModel([]);
             detailView.setModel(incidenceModel,"incidenceModel");

@@ -1,0 +1,94 @@
+_schema-version: "3.2"
+ID: tsystems-awsapigatewaydemo
+description: AWS REST service DEMO
+version: 0.0.1
+modules:
+- name: tsystems-awsapigatewaydemo-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: tsystems-awsapigatewaydemo-destination-service
+    parameters:
+      content-target: true
+  - name: tsystems-awsapigatewaydemo-repo-host
+    parameters:
+      service-key:
+        name: tsystems-awsapigatewaydemo-repo-host-key
+  - name: tsystems-awsapigatewaydemo-uaa
+    parameters:
+      service-key:
+        name: tsystems-awsapigatewaydemo-uaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: tsystems-awsapigatewaydemo_html_repo_host
+          ServiceInstanceName: tsystems-awsapigatewaydemo-html5-srv
+          ServiceKeyName: tsystems-awsapigatewaydemo-repo-host-key
+          sap.cloud.service: tsystems-awsapigatewaydemo
+        - Authentication: OAuth2UserTokenExchange
+          Name: tsystems-awsapigatewaydemo_uaa
+          ServiceInstanceName: tsystems-awsapigatewaydemo-xsuaa-srv
+          ServiceKeyName: tsystems-awsapigatewaydemo-uaa-key
+          sap.cloud.service: tsystems-awsapigatewaydemo
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: tsystems-awsapigatewaydemo-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: tsystems-awsapigatewaydemo-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - tsystemsawsapigatewaydemo.zip
+      name: tsystemsawsapigatewaydemo
+      target-path: resources/
+- name: tsystemsawsapigatewaydemo
+  type: html5
+  path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: tsystems-awsapigatewaydemo-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: tsystems-awsapigatewaydemo-destination-service
+    service-plan: lite
+- name: tsystems-awsapigatewaydemo-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: tsystems-awsapigatewaydemo-xsuaa-srv
+    service-plan: application
+- name: tsystems-awsapigatewaydemo-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: tsystems-awsapigatewaydemo-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true

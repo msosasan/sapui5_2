@@ -169,21 +169,29 @@ function showOrders(oEvent) {
     ordersTable2.addItem(newTableJSON);
 
 };
-        const Main = Controller.extend("logaligroup.employees.controller.MasterEmployee");
-        Main.prototype.onValidate = function () {
-            let inputEmployee = this.getView().byId('inputEmployee');
-            let valueEmployee = inputEmployee.getValue();
-            if (valueEmployee.length === 6) {
-                //inputEmployee.setDescription("OK");
-                this.getView().byId('labelCountry').setVisible(true);
-                this.getView().byId('slCountry').setVisible(true);
-            } else {
-                //inputEmployee.setDescription("No OK")
-                this.getView().byId('labelCountry').setVisible(false);
-                this.getView().byId('slCountry').setVisible(false);
-            }
 
-        }
+function toOrderDetails(oEvent){
+    let orderID = oevent.getSource().getBindingContext("odataNortwind").getObject().orderID;
+    let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+    oRouter.navTo("outeOrderDetails", { orderID: orderID });
+ orderID
+
+};
+        const Main = Controller.extend("logaligroup.employees.controller.MasterEmployee");
+        // Main.prototype.onValidate = function () {
+        //     let inputEmployee = this.getView().byId('inputEmployee');
+        //     let valueEmployee = inputEmployee.getValue();
+        //     if (valueEmployee.length === 6) {
+        //         //inputEmployee.setDescription("OK");
+        //         this.getView().byId('labelCountry').setVisible(true);
+        //         this.getView().byId('slCountry').setVisible(true);
+        //     } else {
+        //         //inputEmployee.setDescription("No OK")
+        //         this.getView().byId('labelCountry').setVisible(false);
+        //         this.getView().byId('slCountry').setVisible(false);
+        //     }
+
+        // }
         Main.prototype.onInit = onInit;
         Main.prototype.onFilter = onFilter;
         Main.prototype.onClearFilter = onClearFilter;
@@ -194,6 +202,7 @@ function showOrders(oEvent) {
         Main.prototype.showOrders2 = showOrders2;
         Main.prototype.onCloseOrders = onCloseOrders;
         Main.prototype.showEmployee = showEmployee;
+        Main.prototype.toOrderDetails = toOrderDetails;
 
         return Main;
         /*

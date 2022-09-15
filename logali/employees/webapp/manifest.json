@@ -78,6 +78,14 @@
             "refreshAfterchange": false
 
         }
+      },
+      "YSAPUI5_SRV_01": {
+        "uri": "/sap/opu/odata/sap/YSAPUI5_SRV_01/",
+        "type": "Odata",
+        "settings": {
+            "odataVersion": "2.0",
+            "localUri": "localService/YSAPUI5_SRV_01/metadata.xml"
+        }
       }
     },
     "resources": {
@@ -100,11 +108,18 @@
       "routes": [
         {
           "name": "RouteMain",
-          "pattern": "RouteMain",
+          "pattern": "",
           "target": [
             "TargetMain"
           ]
-        }
+        },
+        {
+            "name": "RouteOrderDetails",
+            "pattern": "OrderDetails/{orderID}",
+            "target": [
+              "TargetOrderDetails"
+            ]
+          }
       ],
       "targets": {
         "TargetMain": {
@@ -114,20 +129,17 @@
           "viewId": "Main",
           "viewName": "Main"
         },
-        "TargetMasterEmployee": {
+        "TargetOrderDetails": {
             "viewType": "XML",
-            "transition": "slide",
-            "clearControlAggregation": false,
-            "viewId": "MasterEmployee",
-            "viewName": "MasterEmployee"
+            "viewName": "OrderDetails"
           }
       }
     },
     "rootView": {
-      "viewName": "logaligroup.employees.view.Main",
+      "viewName": "logaligroup.employees.view.App",
       "type": "XML",
       "async": true,
-      "id": "Main"
+      "id": "app"
     }
   }
 }

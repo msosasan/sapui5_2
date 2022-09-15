@@ -1,0 +1,45 @@
+<mvc:View
+    controllerName="tsystems.awsapigatewaydemo.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Shell id="shell">
+        <App id="app">
+            <pages>
+            <Page title="DEMO REST Programming" id="DEMO_SO">
+	    <content>
+            <Table id="tableVIN" items="{pricingModel>/prices}">
+                    <columns>
+                    <Column width="50px">
+                         <header>
+                           <Label text="VIN" />
+                         </header>
+                    </Column>
+                    <Column width="200px">
+                     <header>
+                          <Label text="Category" />
+                     </header>
+                    </Column>
+                     <Column width="200px">
+                      <header>
+                        <Label text="Description" />
+                     </header>
+                    </Column>
+                    </columns>
+                    <items>
+                    <ColumnListItem id="cli">
+                    <cells>
+                    <Text text="{pricingModel>vin}" />
+                    <Text text="{pricingModel>category}"  />
+                    <Text text="{pricingModel>description}"  />
+                    </cells>
+                </ColumnListItem>
+             </items>
+            </Table>
+			</content>
+			</Page>
+		</pages>
+        </App>
+    </Shell>
+</mvc:View>

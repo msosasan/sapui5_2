@@ -1,5 +1,6 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    //"sap/ui/core/mvc/Controller",
+    "logaligroup/employees/controller/Base.controller",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
 ],
@@ -8,7 +9,7 @@ sap.ui.define([
      * @param {typeof sap.ui.model.Filter} Filter
      * @param {typeof sap.ui.model.FilterOperator} FilterOperator
      */
-    function (Controller, Filter, FilterOperator) {
+    function (Base, Filter, FilterOperator) {
         "use strict";
         function onInit() {
             this._bus =sap.ui.getCore().getEventBus();
@@ -169,7 +170,7 @@ function showOrders(oEvent) {
     ordersTable2.addItem(newTableJSON);
 
 };
-
+/*
 function toOrderDetails(oEvent){
     let orderID = oevent.getSource().getBindingContext("odataNortwind").getObject().orderID;
     let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -177,7 +178,9 @@ function toOrderDetails(oEvent){
  orderID
 
 };
-        const Main = Controller.extend("logaligroup.employees.controller.MasterEmployee");
+*/
+        //const Main = Controller.extend("logaligroup.employees.controller.MasterEmployee");
+        const Main = Base.extend("logaligroup.employees.controller.MasterEmployee");
         // Main.prototype.onValidate = function () {
         //     let inputEmployee = this.getView().byId('inputEmployee');
         //     let valueEmployee = inputEmployee.getValue();
@@ -202,7 +205,7 @@ function toOrderDetails(oEvent){
         Main.prototype.showOrders2 = showOrders2;
         Main.prototype.onCloseOrders = onCloseOrders;
         Main.prototype.showEmployee = showEmployee;
-        Main.prototype.toOrderDetails = toOrderDetails;
+        //Main.prototype.toOrderDetails = toOrderDetails;
 
         return Main;
         /*

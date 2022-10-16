@@ -1,0 +1,8 @@
+/* Enter your custom styles here */
+.columnStyle {
+    font-size: 14em
+  }
+  
+  .highlight {
+    background-color: rgba(255, 0, 255, 0.5) !important;
+  }

@@ -1,0 +1,78 @@
+<mvc:View
+    controllerName="tsystems.awsapirest2.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Shell id="shell">
+        <App id="app">
+            <pages>
+            <Page title="Lista de Proyectos" id="DEMO_SO">
+	    <content>
+            <Table id="tableFolios" 
+            alternateRowColors="true"
+                items="{pricingModel>/}">
+                    <columns >
+                    <Column>
+                         <header>
+                           <Label text="Folio Gedas"  class="boldText columnStyle sapUiTinyMarginEnd"/>
+                         </header>
+                    </Column>
+                    <Column  class="columnStyle">
+                     <header>
+                          <Label text="RFQ"  class="boldText columnStyle sapUiTinyMarginEnd"/>
+                     </header>
+                    </Column>
+                    <Column>
+                     <header>
+                          <Label text="Nombre Proyecto"  class="boldText columnStyle sapUiTinyMarginEnd" />
+                     </header>
+                    </Column>
+                    <Column>
+                     <header>
+                          <Label text="Número de Proyecto"  class="boldText columnStyle sapUiTinyMarginEnd"/>
+                     </header>
+                    </Column>
+                     <Column>
+                      <header>
+                        <Label text="Mercado"  class="boldText  columnStyle sapUiTinyMarginEnd"/>
+                     </header>
+                    </Column>
+                    <Column>
+                      <header>
+                        <Label text="Mes CXC"  class="boldText columnStyle sapUiTinyMarginEnd"/>
+                     </header>
+                    </Column>
+                    <Column>
+                      <header>
+                        <Label text="Fecha Cobro"  class="boldText columnStyle sapUiTinyMarginEnd"/>
+                     </header>
+                    </Column>
+                     <Column>
+                      <header>
+                        <Label text="Status"  class="boldText columnStyle sapUiTinyMarginEnd"/>
+                     </header>
+                    </Column>
+                    </columns>
+                    <items>
+                    <ColumnListItem id="cli" type="Navigation" press="toProjectDetails">
+                    <cells>
+                    <Text text="{pricingModel>Foliogedas}" />
+                    <Text text="{pricingModel>RFQ}"/>
+                    <Text text="{pricingModel>NomProyecto}"/>
+                    <Text text="{pricingModel>NoProyecto}"/>
+                    <Text text="{pricingModel>Mercado}"  />
+                     <Text text="{pricingModel>MesCXC}" />
+                    <Text text="{pricingModel>FecRegistroCobro}"  />
+                    <Text text="{pricingModel>Status}"  />
+                    </cells>
+                </ColumnListItem>
+             </items>
+            </Table>
+			</content>
+			</Page>
+		</pages>
+        </App>
+    </Shell>
+</mvc:View>
+

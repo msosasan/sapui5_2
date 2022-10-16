@@ -9,7 +9,7 @@ sap.ui.define([
         toOrderDetails: function (oEvent) {
             let orderID = oevent.getSource().getBindingContext("odataNortwind").getObject().orderID;
             let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            oRouter.navTo("outeOrderDetails", { orderID: orderID });
+            oRouter.navTo("RouteOrderDetails", { orderID: orderID });
             orderID
 
         }

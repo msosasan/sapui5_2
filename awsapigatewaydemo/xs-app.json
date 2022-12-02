@@ -4,7 +4,7 @@
   "routes": [
     { 
         "source": "^/qa/(.*)$",
-        "target": "/qa/$1",
+        "target": "/",
         "destination": "awsAPIGateway",
         "authenticationType": "none",
         "csrfProtection": false

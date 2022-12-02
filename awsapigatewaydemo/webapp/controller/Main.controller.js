@@ -14,24 +14,11 @@ sap.ui.define([
             onInit: function () {
                 let that = this;
                 let oModel = new JSONModel();
-                
-                let lv_data = {
-                    "orders": [
-                        {
-                            "vin": "UCYS01S03NB005486",
-                            "calculationDate": "14/05/2022",
-                            "persistent": "f",
-                            "user": "msosasan"
-                        }
-                    ]
-                };
-                let jsonData = JSON.stringify(lv_data);
                 $.ajax({
-                    type: "PUT",
+                    type: "GET",
                     url: sap.ui.require.toUrl("tsystems/awsapigatewaydemo/qa/stmo-price-calculation"),
                     contentType: "application/json",
-                    dataType: "json",
-                    data: jsonData
+                    dataType: "json"
                 }).success(function (data, status, response) {
                     oModel.setData(
                         data

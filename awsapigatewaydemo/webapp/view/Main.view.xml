@@ -9,30 +9,60 @@
             <pages>
             <Page title="DEMO REST Programming" id="DEMO_SO">
 	    <content>
-            <Table id="tableVIN" items="{pricingModel>/prices}">
+            <Table id="tableVIN" items="{pricingModel>/}">
                     <columns>
                     <Column width="50px">
                          <header>
-                           <Label text="VIN" />
+                           <Label text="Folio Gedas" />
                          </header>
                     </Column>
-                    <Column width="200px">
+                    <Column width="50px">
                      <header>
-                          <Label text="Category" />
+                          <Label text="RFQ" />
                      </header>
                     </Column>
-                     <Column width="200px">
+                     <Column width="50px">
                       <header>
-                        <Label text="Description" />
+                        <Label text="Nombre Proyecto" />
+                     </header>
+                    </Column>
+                     <Column width="50px">
+                      <header>
+                        <Label text="Número de Proyecto" />
+                     </header>
+                    </Column>
+                     <Column width="50px">
+                      <header>
+                        <Label text="Mercado" />
+                     </header>
+                    </Column>
+                     <Column width="50px">
+                      <header>
+                        <Label text="Mes CXC" />
+                     </header>
+                    </Column>
+                     <Column width="50px">
+                      <header>
+                        <Label text="Fecha Cobro" />
+                     </header>
+                    </Column>
+                    <Column width="50px">
+                      <header>
+                        <Label text="Status" />
                      </header>
                     </Column>
                     </columns>
                     <items>
                     <ColumnListItem id="cli">
                     <cells>
-                    <Text text="{pricingModel>vin}" />
-                    <Text text="{pricingModel>category}"  />
-                    <Text text="{pricingModel>description}"  />
+                    <Text text="{pricingModel>Foliogedas}" />
+                    <Text text="{pricingModel>RFQ}"  />
+                    <Text text="{pricingModel>NomProyecto}"  />
+                    <Text text="{pricingModel>NoProyecto}"  />
+                    <Text text="{pricingModel>Mercado}"  />
+                    <Text text="{pricingModel>MesCXC}"  />
+                    <Text text="{pricingModel>FecRegistroCobro}"  />
+                    <Text text="{pricingModel>Status}"  />
                     </cells>
                 </ColumnListItem>
              </items>

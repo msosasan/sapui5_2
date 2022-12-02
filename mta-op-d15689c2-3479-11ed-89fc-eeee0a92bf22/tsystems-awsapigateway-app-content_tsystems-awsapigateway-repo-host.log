@@ -1,4 +1,0 @@
-#2.0#2022 09 14 22:09:31.910#Z#DEBUG#com.sap.cloud.lm.sl.xs2.d15689c2-3479-11ed-89fc-eeee0a92bf22.tsystems-awsapigateway-app-content_tsystems-awsapigateway-repo-host.startContentDeployTask#
-######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-5028###
-[PollDeployContentStatusExecution] [tsystems-awsapigateway-app-content] [INFO] Application content was successfully uploaded { CODE: '1002' }#
-
